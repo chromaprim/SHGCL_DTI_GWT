@@ -1,0 +1,49 @@
+
+digraph flowchart {
+    rankdir=TB;
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+
+    A [label="开始", fillcolor="#F9E79F"];
+    B [label="输入节点数据", fillcolor="#F9E79F"];
+
+    // 药物节点流程
+    C [label="药物节点：提取 SMILES 结构", fillcolor="#FAD7A0"];
+    D [label="转换为分子指纹", fillcolor="#FAD7A0"];
+    E [label="PCA 降维", fillcolor="#FAD7A0"];
+    F [label="低维药物向量表示", fillcolor="#FAD7A0"];
+
+    // 蛋白质节点流程
+    G [label="蛋白质节点：提取氨基酸序列", fillcolor="#AED6F1"];
+    H [label="计算 AAComposition", fillcolor="#AED6F1"];
+    I [label="PCA 降维", fillcolor="#AED6F1"];
+    J [label="蛋白质嵌入表示", fillcolor="#AED6F1"];
+
+    // 副作用与疾病节点流程
+    K [label="副作用 & 疾病节点数据", fillcolor="#D5F5E3"];
+    L [label="采用 Node2vec", fillcolor="#D5F5E3"];
+    M [label="节点嵌入表示", fillcolor="#D5F5E3"];
+
+    // 综合特征表示
+    N [label="综合节点特征表示", fillcolor="#D2B4DE"];
+
+    // 建立流程连接
+    A -> B;
+    B -> C;
+    B -> G;
+    B -> K;
+
+    C -> D;
+    D -> E;
+    E -> F;
+
+    G -> H;
+    H -> I;
+    I -> J;
+
+    K -> L;
+    L -> M;
+
+    F -> N;
+    J -> N;
+    M -> N;
+}
